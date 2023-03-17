@@ -34,8 +34,58 @@ def make_melon_types():
     """Returns a list of current melon types."""
 
     all_melon_types = []
+    # code, first_harvest, color, is_seedless, is_bestseller, name
 
-    # Fill in the rest
+    muskmelon = MelonType(
+        code="musk",
+        name="Muskmelon",
+        first_harvest=1998,
+        color="green",
+        is_seedless=True,
+        is_bestseller= True)
+    musk.add_pairing("mint")
+
+    all_melon_types.append(muskmelon)
+
+
+    casaba = MelonType(
+        code="cas",
+        name="Casaba",
+        first_harvest=2003,
+        color="orange",
+        is_seedless=False,
+        is_bestseller= False)
+        
+    casaba.add_pairing("mint")
+    casaba.add_pairing("strawberries")
+
+    all_melon_types.append(casaba)
+
+   
+    crenshaw = MelonType(
+        code="cren",
+        name="Crenshaw",
+        first_harvest=1996,
+        color="green",
+        is_seedless=False,
+        is_bestseller= False)
+    crenshaw.add_pairing("prosciutto")
+    
+    all_melon_types.append(crenshaw)
+
+   
+    yellow_watermelon = MelonType(
+        code="yw",
+        name="Yellow Watermelon",
+        first_harvest=2013,
+        color="yellow",
+        is_seedless=False,
+        is_bestseller= True)
+    yellow_watermelon.add_pairing("ice cream")
+    
+    all_melon_types.append(yellow_watermelon)
+
+    
 
     return all_melon_types
 
