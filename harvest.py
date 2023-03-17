@@ -90,10 +90,16 @@ def make_melon_types():
 
     return all_melon_types
 
+
 def print_pairing_info(melon_types):
     """Prints information about each melon type's pairings."""
 
-    # Fill in the rest
+    for melon_obj in melon_types:
+        print(f'{melon_obj.name} pairs with')
+        for food in melon_obj.pairings:
+            print(f'- {food}')
+        print()
+
 
 
 def make_melon_type_lookup(melon_types):
