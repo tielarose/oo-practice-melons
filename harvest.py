@@ -17,7 +17,8 @@ class MelonType:
         self.name = name
         self.pairings = []
 
-       
+    def __repr__(self):
+        return f'<name={self.name } code={self.code} first_harvest={self.first_harvest} color={self.color} is_seedless={self.is_seedless} is_bestseller={self.is_bestseller}>' 
 
     def add_pairing(self, pairing):
         """Add a food pairing to the instance's pairings list."""
@@ -43,7 +44,7 @@ def make_melon_types():
         color="green",
         is_seedless=True,
         is_bestseller= True)
-    musk.add_pairing("mint")
+    muskmelon.add_pairing("mint")
 
     all_melon_types.append(muskmelon)
 
@@ -88,7 +89,6 @@ def make_melon_types():
     
 
     return all_melon_types
-
 
 def print_pairing_info(melon_types):
     """Prints information about each melon type's pairings."""
