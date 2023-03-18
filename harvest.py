@@ -139,11 +139,92 @@ class Melon:
         return False
 
 
-
 def make_melons(melon_types):
     """Returns a list of Melon objects."""
 
-    # Fill in the rest
+    melon_lookup = make_melon_type_lookup(melon_types)
+
+    melon_objects = []
+
+    melon1 = Melon(
+        melon_type=melon_lookup['yw'],
+        shape_rating=8,
+        color_rating=7,
+        harvested_from=2,
+        harvested_by="Sheila")
+    melon_objects.append(melon1)
+   
+    melon2 = Melon(
+        melon_type=melon_lookup['yw'],
+        shape_rating=3,
+        color_rating=4,
+        harvested_from=2,
+        harvested_by="Sheila") 
+    melon_objects.append(melon2)
+
+    melon3 = Melon(
+        melon_type=melon_lookup['yw'],
+        shape_rating=9,
+        color_rating=8,
+        harvested_from=3,
+        harvested_by="Sheila")
+    melon_objects.append(melon3)
+    
+
+    melon4 = Melon(
+        melon_type=melon_lookup['cas'],
+        shape_rating=10,
+        color_rating=6,
+        harvested_from=35,
+        harvested_by="Sheila")
+    melon_objects.append(melon4)
+    
+
+    melon5 = Melon(
+        melon_type=melon_lookup['cren'],
+        shape_rating=8,
+        color_rating=9,
+        harvested_from=35,
+        harvested_by="Michael")
+    melon_objects.append(melon5)
+    
+
+    melon6 = Melon(
+        melon_type=melon_lookup['cren'],
+        shape_rating=8,
+        color_rating=2,
+        harvested_from=35,
+        harvested_by="Michael")
+    melon_objects.append(melon6)
+    
+
+    melon7 = Melon(
+        melon_type=melon_lookup['cren'],
+        shape_rating=2,
+        color_rating=3,
+        harvested_from=4,
+        harvested_by="Michael")
+    melon_objects.append(melon7)
+    
+
+    melon8 = Melon(
+        melon_type=melon_lookup['musk'],
+        shape_rating=6,
+        color_rating=7,
+        harvested_from=4,
+        harvested_by="Michael")
+    melon_objects.append(melon8)
+    
+
+    melon9 = Melon(
+        melon_type=melon_lookup['yw'],
+        shape_rating=7,
+        color_rating=10,
+        harvested_from=3,
+        harvested_by="Sheila")
+    melon_objects.append(melon9)
+
+    return melon_objects
 
 
 def get_sellability_report(melons):
