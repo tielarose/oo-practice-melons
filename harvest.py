@@ -109,7 +109,8 @@ def make_melon_type_lookup(melon_types):
 
     for melon in melon_types:
         code = melon.code
-        dictionary_of_melons[code] = melon
+        if code not in dictionary_of_melons:
+            dictionary_of_melons[code] = melon
 
     return dictionary_of_melons
 
@@ -230,4 +231,17 @@ def make_melons(melon_types):
 def get_sellability_report(melons):
     """Given a list of melon object, prints whether each one is sellable."""
 
-    # Fill in the rest
+    for melon in melons:
+        if melon.is_sellable():
+            msg = 'CAN BE SOLD'
+        else:
+            msg = 'NOT SELLABLE'
+        
+        print(f'Harvested by {melon.harvested_by} from field {melon.harvested_from} ({msg})')
+         
+
+melon_types = make_melon_types()
+melons = make_melons(melon_types)
+get_sellability_report(melons)
+
+
