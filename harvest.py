@@ -18,7 +18,7 @@ class MelonType:
         self.pairings = []
 
     def __repr__(self):
-        return f'<name={self.name } code={self.code} first_harvest={self.first_harvest} color={self.color} is_seedless={self.is_seedless} is_bestseller={self.is_bestseller}>' 
+        return f'<name={self.name } code={self.code} first_harvest={self.first_harvest} color={self.color} is_seedless={self.is_seedless} is_bestseller={self.is_bestseller}>'
 
     def add_pairing(self, pairing):
         """Add a food pairing to the instance's pairings list."""
@@ -43,11 +43,10 @@ def make_melon_types():
         first_harvest=1998,
         color="green",
         is_seedless=True,
-        is_bestseller= True)
+        is_bestseller=True)
     muskmelon.add_pairing("mint")
 
     all_melon_types.append(muskmelon)
-
 
     casaba = MelonType(
         code="cas",
@@ -55,38 +54,34 @@ def make_melon_types():
         first_harvest=2003,
         color="orange",
         is_seedless=False,
-        is_bestseller= False)
-        
+        is_bestseller=False)
+
     casaba.add_pairing("mint")
     casaba.add_pairing("strawberries")
 
     all_melon_types.append(casaba)
 
-   
     crenshaw = MelonType(
         code="cren",
         name="Crenshaw",
         first_harvest=1996,
         color="green",
         is_seedless=False,
-        is_bestseller= False)
+        is_bestseller=False)
     crenshaw.add_pairing("prosciutto")
-    
+
     all_melon_types.append(crenshaw)
 
-   
     yellow_watermelon = MelonType(
         code="yw",
         name="Yellow Watermelon",
         first_harvest=2013,
         color="yellow",
         is_seedless=False,
-        is_bestseller= True)
+        is_bestseller=True)
     yellow_watermelon.add_pairing("ice cream")
-    
-    all_melon_types.append(yellow_watermelon)
 
-    
+    all_melon_types.append(yellow_watermelon)
 
     return all_melon_types
 
@@ -99,7 +94,6 @@ def print_pairing_info(melon_types):
         for food in melon_obj.pairings:
             print(f'- {food}')
         print()
-
 
 
 def make_melon_type_lookup(melon_types):
@@ -136,7 +130,7 @@ class Melon:
     def is_sellable(self):
         if (self.shape_rating > 5) and (self.color_rating > 5) and not (self.harvested_from == 3):
             return True
-    
+
         return False
 
 
@@ -154,13 +148,13 @@ def make_melons(melon_types):
         harvested_from=2,
         harvested_by="Sheila")
     melon_objects.append(melon1)
-   
+
     melon2 = Melon(
         melon_type=melon_lookup['yw'],
         shape_rating=3,
         color_rating=4,
         harvested_from=2,
-        harvested_by="Sheila") 
+        harvested_by="Sheila")
     melon_objects.append(melon2)
 
     melon3 = Melon(
@@ -170,7 +164,6 @@ def make_melons(melon_types):
         harvested_from=3,
         harvested_by="Sheila")
     melon_objects.append(melon3)
-    
 
     melon4 = Melon(
         melon_type=melon_lookup['cas'],
@@ -179,7 +172,6 @@ def make_melons(melon_types):
         harvested_from=35,
         harvested_by="Sheila")
     melon_objects.append(melon4)
-    
 
     melon5 = Melon(
         melon_type=melon_lookup['cren'],
@@ -188,7 +180,6 @@ def make_melons(melon_types):
         harvested_from=35,
         harvested_by="Michael")
     melon_objects.append(melon5)
-    
 
     melon6 = Melon(
         melon_type=melon_lookup['cren'],
@@ -197,7 +188,6 @@ def make_melons(melon_types):
         harvested_from=35,
         harvested_by="Michael")
     melon_objects.append(melon6)
-    
 
     melon7 = Melon(
         melon_type=melon_lookup['cren'],
@@ -206,7 +196,6 @@ def make_melons(melon_types):
         harvested_from=4,
         harvested_by="Michael")
     melon_objects.append(melon7)
-    
 
     melon8 = Melon(
         melon_type=melon_lookup['musk'],
@@ -215,7 +204,6 @@ def make_melons(melon_types):
         harvested_from=4,
         harvested_by="Michael")
     melon_objects.append(melon8)
-    
 
     melon9 = Melon(
         melon_type=melon_lookup['yw'],
@@ -236,12 +224,34 @@ def get_sellability_report(melons):
             msg = 'CAN BE SOLD'
         else:
             msg = 'NOT SELLABLE'
-        
-        print(f'Harvested by {melon.harvested_by} from field {melon.harvested_from} ({msg})')
-         
 
-melon_types = make_melon_types()
-melons = make_melons(melon_types)
-get_sellability_report(melons)
+        print(
+            f'Harvested by {melon.harvested_by} from field {melon.harvested_from} ({msg})')
 
 
+def create_melon_obj_from_file(filepath, melon_types):
+    file = open(filepath)
+
+    melon_lookup = make_melon_type_lookup(melon_types)
+
+    melon_objects = []
+
+    for line in file:
+        line = line.rstrip().split(' ')
+
+        shape_rating = int(line[1])
+        color_rating = int(line[3])
+        melon_code = line[5]
+        harvested_by = line[8]
+        harvested_from = line[11]
+
+        melon = Melon(
+            melon_type=melon_lookup[melon_code],
+            shape_rating=shape_rating,
+            color_rating=color_rating,
+            harvested_from=harvested_from,
+            harvested_by=harvested_by)
+
+        melon_objects.append(melon)
+
+    return melon_objects
